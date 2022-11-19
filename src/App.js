@@ -17,10 +17,16 @@ function App() {
 
   //shuffle cards 
   const shuffleCards = () => {
+    // add 2x cards
+    /*math.random > returns +/- number
+    - number stay the same order, else switch order around
+    * map > return an object. spread card property & add property id
+    */
     const shuffledCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map( card => ({ ...card, id: Math.random }))
 
+    //reset
     setCards(shuffledCards)
     setTurns(0)
   }
