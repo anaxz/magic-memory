@@ -16,3 +16,11 @@ button:hover {
   background: #c23866;
   color: #fff;
 }
+.card-grid {
+  margin-top: 40px;
+  display: grid;
+  /* 4 cols in a row, 
+  each 1fraction of the webpag/avaible space*/
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 20px;
+}
