@@ -72,3 +72,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ## Reference
 
 Made using this tutorial: https://www.youtube.com/playlist?list=PL4cUxeGkcC9iQ7g2eoNXHCJBBBz40S_Lm
+
+## Other
+
+Can run on mac but not windows
