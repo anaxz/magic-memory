@@ -8,3 +8,34 @@
   border: 2px solid #fff;
   border-radius: 6px;
 }
+
+/* front of the card */
+.card .front {
+  /* set it absolute of the parent(card) so sits on top of the back of the card */
+  position: absolute; 
+  /* but the back of the card won't display then so hide it by rotate it */
+  transform: rotateY(90deg);
+  /* animate flip from 90deg to 0deg */
+  transition: all ease-in 0.2s;
+}
+
+.flipped .front {
+  /* rotate image back to front so you can see the image */
+  transform: rotateY(0deg);
+  /* delay so the cover can animate out the rotation first (0,2s) then front rotates in */
+  transition-delay: 0.2s;
+}
+
+/* back of the card - cover */
+/* default back of the card is showing */
+.card .back {
+  /* animate the cover flip */
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+
+.flipped .back {
+  /* rotate to hide the cover */
+  transform: rotateY(90deg);
+  transition-delay: 0s;
+}

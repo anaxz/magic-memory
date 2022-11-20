@@ -17,6 +17,7 @@ function App() {
   // store the players choices 
   const [choiceOne, setChoiceOne] = useState(null)
   const [choiceTwo, setChoiceTwo] = useState(null)
+  const [disabled, setDisabled] = useState(false)
 
   //shuffle cards 
   const shuffleCards = () => {
@@ -30,6 +31,8 @@ function App() {
       .map( card => ({ ...card, id: Math.random }))
 
     //reset
+    setChoiceOne(null)
+    setChoiceTwo(null)
     setCards(shuffledCards)
     setTurns(0)
   }
@@ -48,6 +51,8 @@ function App() {
   useEffect(() => {
     // if both not null
     if(choiceOne && choiceTwo) {
+      // stop other cards from flipping until check completed
+      setDisabled(true)
       if(choiceOne.src === choiceTwo.src){
         // update: set the card src by checking...
         setCards(prevCards => {
@@ -59,20 +64,26 @@ function App() {
             else return card
           })
         })
+        resetTurn()
       } else {
-        console.log('not match')
+        // setTimeout(func, milliseconds); 1000 = 1sec
+        setTimeout(() => resetTurn(), 1000)
       }
-      resetTurn()
+      
     }
   }, [choiceOne, choiceTwo])
-
-  console.log(cards)
 
   const resetTurn = () => {
     setChoiceOne(null)
     setChoiceTwo(null)
     setTurns(prevTurns => prevTurns + 1)
+    setDisabled(false)
   }  
+
+  // start game automatically when page first lands
+  useEffect(() => {
+    shuffleCards()
+  }, [])
 
   return (
     <div className="App">
@@ -84,16 +95,18 @@ function App() {
           <SingleCard
            key={card.id} card={card} 
            handleChoice={handleChoice}
-           flipped={card === choiceOne || card === choiceTwo}
+           flipped={card === choiceOne || card === choiceTwo || card.matched}
+           disabled={disabled}
           />
         ) ) }
       </div>
-
+      <p>Turns: {turns}</p>
     </div>
   );
   /* cards.map: use => () instead of => {}
   * singleCard> key and card are props needed in it's script
-  * flipped -> iterate through card is chosen, flip
+  * flipped -> iterate through if card is chosen, flip the card or is already matched
+  * disabled -> stop card from flipping
   */
 }
 
