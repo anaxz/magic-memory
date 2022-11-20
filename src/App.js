@@ -41,7 +41,7 @@ function App() {
     // console.log('1: '+ choiceOne,'2: '+ choiceTwo)
   }
 
-  // compare choice
+  // Compare choices
   // param( func(), dependecey array)
   /* useEffect -> fires automatically whenever a dependency is changed. 
   In this case choice1 and choice2 */
@@ -84,6 +84,7 @@ function App() {
           <SingleCard
            key={card.id} card={card} 
            handleChoice={handleChoice}
+           flipped={card === choiceOne || card === choiceTwo}
           />
         ) ) }
       </div>
@@ -92,6 +93,7 @@ function App() {
   );
   /* cards.map: use => () instead of => {}
   * singleCard> key and card are props needed in it's script
+  * flipped -> iterate through card is chosen, flip
   */
 }
 
